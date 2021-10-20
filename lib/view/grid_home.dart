@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:siddhant_dixit/main.dart';
+import 'package:siddhant_dixit/view/novel_page.dart';
 
 class GridData extends StatefulWidget {
   const GridData({Key? key}) : super(key: key);
@@ -28,7 +29,13 @@ class _GridDataState extends State<GridData> {
 
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () {},
+            onTap: () {
+              userSelectedIndex = index;
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NovelPage()),
+              );
+            },
             child: Padding(
               padding: EdgeInsets.all(10.0),
               child: Container(

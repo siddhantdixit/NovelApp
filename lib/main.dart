@@ -8,6 +8,7 @@ import 'package:fuzzy/fuzzy.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:siddhant_dixit/view/grid_home.dart';
 import 'package:http/http.dart' as http;
+import 'package:siddhant_dixit/view/novel_page.dart';
 
 final List<String> imgList = [
   'https://nogozo.com/static/book/images/c2.webp',
@@ -17,6 +18,9 @@ final List<String> imgList = [
 ];
 
 List novelResponse = new List.empty();
+
+int userSelectedIndex = -1;
+
 
 String searchedSelected = "";
 int searchedSelectedIndex = -1;
@@ -205,7 +209,7 @@ class HomeScreen extends StatelessWidget {
                       .toList(),
                 ),
               ),
-             
+
               Text('Book For Romance'),
               Container(
                 child: GridData(),
@@ -311,7 +315,12 @@ class DataSearch extends SearchDelegate<String> {
           searchedSelected = suggestionList[index];
           searchedSelectedIndex = novelNames.indexWhere((element) =>
           element == searchedSelected);
-          showResults(context);
+          // showResults(context);
+          userSelectedIndex = searchedSelectedIndex;
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NovelPage()),
+          );
         },
         leading: const Icon(Icons.book),
         title: RichText(
