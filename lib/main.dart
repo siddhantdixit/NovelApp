@@ -205,11 +205,7 @@ class HomeScreen extends StatelessWidget {
                       .toList(),
                 ),
               ),
-              TextField(
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter a search term'),
-              ),
+             
               Text('Book For Romance'),
               Container(
                 child: GridData(),
