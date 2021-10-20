@@ -5,12 +5,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fuzzy/fuzzy.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:siddhant_dixit/view/grid_home.dart';
 import 'package:http/http.dart' as http;
 import 'package:siddhant_dixit/view/novel_page.dart';
 import 'package:siddhant_dixit/view/tag_options.dart';
 
+
+// Carousel Wallpapers
 final List<String> imgList = [
   'https://nogozo.com/static/book/images/c2.webp',
   'https://nogozo.com/static/book/images/c3.webp',
@@ -62,10 +63,11 @@ class _MyAppState extends State<MyApp> {
     fetchProducts();
 
 
-    final fuse = Fuzzy(['Eleven Minutes By Paulo Coelho', 'Veronica Decides to die by Paulo Coelhi']);
-
-    final result = fuse.search('paulo');
-    print(result);
+    // Fuzzy Search Test
+    // final fuse = Fuzzy(['Eleven Minutes By Paulo Coelho', 'Veronica Decides to die by Paulo Coelhi']);
+    //
+    // final result = fuse.search('paulo');
+    // print(result);
     // result.map((r) => r.output.first.value).forEach(print);
   }
 
@@ -75,83 +77,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: new HomeScreen(),
-      // home: MyScaff(),
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     title: Text('Nogozo'),
-      //     actions: [
-      //       IconButton(onPressed: (){
-      //         // print('Pressed');
-      //         showSearch(context: context, delegate: DataSearch());
-      //       }, icon: Icon(Icons.search))
-      //     ],
-      //   ),
-      //
-      //   // appBar: AppBar(
-      //   //   title: Text('Nogozo'),
-      //   //   // actions: [
-      //   //   //       Expanded(
-      //   //   //         child: TextField(
-      //   //   //         decoration: const InputDecoration(
-      //   //   //         border: OutlineInputBorder(),
-      //   //   //           hintText: 'Enter a search term'
-      //   //   //     ),
-      //   //   //   ),
-      //   //   //       )
-      //   //   // ],
-      //   // ),
-      //   body: SafeArea(
-      //     child: SingleChildScrollView(
-      //       child: Column(
-      //         crossAxisAlignment: CrossAxisAlignment.stretch,
-      //         children: [
-      //           Container(
-      //             height: 100,
-      //             child: CarouselSlider(
-      //               options: CarouselOptions(
-      //                   viewportFraction: 1.0,
-      //                   autoPlay: true,
-      //                   autoPlayInterval: Duration(seconds: 8)),
-      //               items: imgList
-      //                   .map((item) => Container(
-      //                         child: Center(
-      //                             child:
-      //                                 // Image.network(item, fit: BoxFit.cover, width: 1000)
-      //                                 CachedNetworkImage(
-      //                           imageUrl: item,
-      //                           fit: BoxFit.fitWidth,
-      //                           width: double.infinity,
-      //                         )),
-      //                       ))
-      //                   .toList(),
-      //             ),
-      //           ),
-      //           TextField(
-      //             decoration: const InputDecoration(
-      //                 border: OutlineInputBorder(),
-      //                 hintText: 'Enter a search term'),
-      //           ),
-      //           Text('Book For Romance'),
-      //           Container(
-      //             child: GridData(),
-      //           )
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }
@@ -197,19 +125,6 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
 
-      // appBar: AppBar(
-      //   title: Text('Nogozo'),
-      //   // actions: [
-      //   //       Expanded(
-      //   //         child: TextField(
-      //   //         decoration: const InputDecoration(
-      //   //         border: OutlineInputBorder(),
-      //   //           hintText: 'Enter a search term'
-      //   //     ),
-      //   //   ),
-      //   //       )
-      //   // ],
-      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -373,32 +288,9 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-
-
-
-
-
-
-
-
 class DataSearch extends SearchDelegate<String> {
-  // final novelNames = [
-  //   "Bhandup",
-  //   "Mumbai",
-  //   "Visakhapatnam",
-  //   "Coimbatore",
-  //   "Coimbatore",
-  //   "Coimbatore",
-  //   "Coimbatore",
-  //   "Coimbatore",
-  //   "Coimbatore",
-  //   "Coimbatore",
-  //   "Coimbatore",
-  //   "Coimbatore",
-  //   "Coimbatore",
-  // ];
 
-  final recentCities = [
+  final trendingNovels = [
 
   ];
 
@@ -448,12 +340,9 @@ class DataSearch extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     // TODO: implement buildSuggestions
-    // final suggestionList = query.isEmpty
-    //     ? recentCities
-    //     : novelNames.where((p) => p.startsWith(query)).toList();
 
     final suggestionList = query.isEmpty
-        ? recentCities
+        ? trendingNovels
         :  Fuzzy<String>(novelNames, options: FuzzyOptions(threshold: .4))
         .search(query)
         .map((result) => result.item)
