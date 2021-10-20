@@ -160,6 +160,32 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Nogozo'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text('Nogozo'),
         actions: [
@@ -202,15 +228,25 @@ class HomeScreen extends StatelessWidget {
                         // Image.network(item, fit: BoxFit.cover, width: 1000)
                         CachedNetworkImage(
                           imageUrl: item,
-                          fit: BoxFit.fitWidth,
+                          height: 100,
+                          fit: BoxFit.fill,
                           width: double.infinity,
                         )),
                   ))
                       .toList(),
                 ),
               ),
-
-              Text('Book For Romance'),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  child: Text('Books For Romance',
+                      style: TextStyle(
+                        fontSize: 20
+                      ),
+                  ),
+                padding: EdgeInsets.all(10),
+              ),
               Container(
                 child: GridData(),
               )

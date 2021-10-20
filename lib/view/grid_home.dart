@@ -48,7 +48,7 @@ class _GridDataState extends State<GridData> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      blurRadius: 1.0,
+                      blurRadius: 5.0,
                       color: Colors.black38,
                       offset: Offset(5.0, 5.0),
                     )
