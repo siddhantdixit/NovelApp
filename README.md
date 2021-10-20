@@ -2,6 +2,15 @@
 
 An app to see list of novels
 
+## Views
+
+ <img width="216px" alt="CircularFloatingSearchBarTransition" src="demo/home_view.jpg"/>
+
+<img width="216px" alt="ExpandingFloatingSearchBarTransition" src="demo/novel_view.jpg"/>
+
+<img width="216px" alt="SlideFadeFloatingSearchBarTransition" src="demo/search_view.jpg"/>
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
