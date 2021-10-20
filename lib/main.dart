@@ -18,6 +18,9 @@ final List<String> imgList = [
 
 List novelResponse = new List.empty();
 
+String searchedSelected = "";
+int searchedSelectedIndex = -1;
+
 List<String> novelNames = new List.empty(growable: true);
 
 void main() {
@@ -54,9 +57,9 @@ class _MyAppState extends State<MyApp> {
     fetchProducts();
 
 
-    final fuse = Fuzzy(['apple', 'banana', 'orange']);
+    final fuse = Fuzzy(['Eleven Minutes By Paulo Coelho', 'Veronica Decides to die by Paulo Coelhi']);
 
-    final result = fuse.search('an');
+    final result = fuse.search('paulo');
     print(result);
     // result.map((r) => r.output.first.value).forEach(print);
   }
@@ -284,7 +287,7 @@ class DataSearch extends SearchDelegate<String> {
         child: Card(
           color: Colors.red,
           child: Center(
-            child: Text(query),
+            child: Text(searchedSelected+"{$searchedSelectedIndex}"),
           ),
         ),
       ),
@@ -294,27 +297,39 @@ class DataSearch extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     // TODO: implement buildSuggestions
+    // final suggestionList = query.isEmpty
+    //     ? recentCities
+    //     : novelNames.where((p) => p.startsWith(query)).toList();
+
     final suggestionList = query.isEmpty
         ? recentCities
-        : novelNames.where((p) => p.startsWith(query)).toList();
+        :  Fuzzy<String>(novelNames, options: FuzzyOptions(threshold: .4))
+        .search(query)
+        .map((result) => result.item)
+        .toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (context, index) => ListTile(
         onTap: () {
+          searchedSelected = suggestionList[index];
+          searchedSelectedIndex = novelNames.indexWhere((element) =>
+          element == searchedSelected);
           showResults(context);
         },
-        leading: const Icon(Icons.location_city),
+        leading: const Icon(Icons.book),
         title: RichText(
           text: TextSpan(
-              text: suggestionList[index].substring(0, query.length),
+              text: suggestionList[index],
               style: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold),
-              children: [
-                TextSpan(
-                    text: suggestionList[index].substring(query.length),
-                    style: const TextStyle(color: Colors.grey))
-              ]),
+                  color: Colors.black,
+              ),
+              // children: [
+              //   TextSpan(
+              //       text: suggestionList[index].substring(query.length),
+              //       style: const TextStyle(color: Colors.grey))
+              // ]
+          ),
         ),
       ),
     );
