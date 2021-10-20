@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:siddhant_dixit/main.dart';
@@ -19,7 +20,7 @@ class _GridDataState extends State<GridData> {
       }
     else {
       return GridView.builder(
-        // physics: ScrollPhysics(),
+        physics: ScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2),
         shrinkWrap: true,
@@ -51,7 +52,7 @@ class _GridDataState extends State<GridData> {
                   children: [
                     Center(
                       child: Image.network(
-                        novelResponse[index]['Image'],
+                        novelResponse[index]['image'],
                         height: 70.0,
                         width: MediaQuery
                             .of(context)
@@ -63,18 +64,11 @@ class _GridDataState extends State<GridData> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        novelResponse[index]['Name'],
+                        novelResponse[index]['name'],
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        novelResponse[index]['Category'],
-                        style: TextStyle(fontSize: 12.0),
                       ),
                     ),
                     SizedBox(
@@ -86,8 +80,12 @@ class _GridDataState extends State<GridData> {
                         right: 2.0,
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          Text('Rent Price: '),
+                          // Spacer(
+                          //   flex: 1,
+                          // ),
                           Row(
                             children: [
                               Text(
@@ -98,7 +96,7 @@ class _GridDataState extends State<GridData> {
                                 ),
                               ),
                               Text(
-                                novelResponse[index]['Price'].toString(),
+                                novelResponse[index]['one_week_rent_price'].toString(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xff005DFF),
@@ -106,16 +104,28 @@ class _GridDataState extends State<GridData> {
                               ),
                             ],
                           ),
-                          new GestureDetector(
-                            child: IconButton(
-                              splashColor: Colors.blue,
-                              tooltip: 'Add to cart',
-                              onPressed: () {
-                                print('Button Pressed');
-                              },
-                              icon: Icon(Icons.add_shopping_cart_rounded),
-                              color: Colors.blue,
-                            ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                '₹',
+                                style: TextStyle(
+                                  decoration: TextDecoration.lineThrough,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff005DFF),
+                                ),
+                              ),
+                              Text(
+                                novelResponse[index]['mrp'].toString(),
+                                style: TextStyle(
+                                  decoration: TextDecoration.lineThrough,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff005DFF),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
