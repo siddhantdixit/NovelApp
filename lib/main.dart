@@ -9,6 +9,7 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:siddhant_dixit/view/grid_home.dart';
 import 'package:http/http.dart' as http;
 import 'package:siddhant_dixit/view/novel_page.dart';
+import 'package:siddhant_dixit/view/tag_options.dart';
 
 final List<String> imgList = [
   'https://nogozo.com/static/book/images/c2.webp',
@@ -238,6 +239,120 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: 10,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xFFa569bd),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: Text('IIT JEE', style: TextStyle(fontSize: 10),),
+                        onPressed: () {
+                          iiitjeeDialog(context);
+                        },
+                      ),
+                      SizedBox(width: 10),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xFFe74c3c),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: Text('NEET', style: TextStyle(fontSize: 10),),
+                        onPressed: () {
+                          neetDialog(context);
+                        },
+                      ),
+                      SizedBox(width: 10),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xFFffab40),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: Text('Class XII', style: TextStyle(fontSize: 10),),
+                        onPressed: () {
+                          class12Dialog(context);
+                        },
+                      ),
+                      SizedBox(width: 10),
+
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xFF16a085),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: Text('Class XI', style: TextStyle(fontSize: 10),),
+                        onPressed: () {
+                          class11Dialog(context);
+                        },
+                      ),
+                      SizedBox(width: 10),
+
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xFFe67e22),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: Text('Class X', style: TextStyle(fontSize: 10),),
+                        onPressed: () {
+
+                        },
+                      ),
+                      SizedBox(width: 10),
+
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF1abc9c),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: Text('Class IX', style: TextStyle(fontSize: 10),),
+                        onPressed: () {
+
+                        },
+                      ),
+                      SizedBox(width: 10),
+
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF2e86c1),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: Text('ICSE & ISC', style: TextStyle(fontSize: 10),),
+                        onPressed: () {
+
+                        },
+                      ),
+                      SizedBox(width: 10),
+
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xFFc1862e),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: Text('Govt Exams', style: TextStyle(fontSize: 10),),
+                        onPressed: () {
+
+                        },
+                      ),
+                      SizedBox(width: 10),
+
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF2e86c1),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: Text('Novels', style: TextStyle(fontSize: 10),),
+                        onPressed: () {
+
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Container(
                   child: Text('Books For Romance',
