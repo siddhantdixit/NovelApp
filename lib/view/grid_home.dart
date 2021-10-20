@@ -21,9 +21,10 @@ class _GridDataState extends State<GridData> {
       }
     else {
       return GridView.builder(
+
         physics: ScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2),
+            crossAxisCount: 2,childAspectRatio: 3/4),
         shrinkWrap: true,
         itemCount: novelResponse.length,
 
@@ -40,11 +41,11 @@ class _GridDataState extends State<GridData> {
               padding: EdgeInsets.all(10.0),
               child: Container(
                 width: 100.0,
-                height: 200.0,
+                // height: 400.0,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(
-                    Radius.circular(20.0),
+                    Radius.circular(10.0),
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -60,22 +61,25 @@ class _GridDataState extends State<GridData> {
                     Center(
                       child: Image.network(
                         novelResponse[index]['image'],
-                        height: 70.0,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
+                        height: 150.0,
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        novelResponse[index]['name'],
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      height: 55,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          novelResponse[index]['name'],
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -89,6 +93,9 @@ class _GridDataState extends State<GridData> {
                       child: Row(
                         // mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          SizedBox(
+                            width: 10,
+                          ),
                           Text('Rent Price: '),
                           // Spacer(
                           //   flex: 1,
